@@ -9,3 +9,15 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+MyApp.Accounts.Organization
+|> Ash.Changeset.for_create(:create, %{name: "cyberdyne"})
+|> Ash.create!()
+
+MyApp.Accounts.User
+|> Ash.Changeset.for_create(
+  :register_with_password,
+  %{email: "user@example.com", password: "asdfasdf", password_confirmation: "asdfasdf"},
+  tenant: "org_cyberdyne"
+)
+|> Ash.create!()

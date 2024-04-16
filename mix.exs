@@ -37,6 +37,7 @@ defmodule MyApp.MixProject do
       {:ash_authentication_phoenix, "2.0.0-rc.2"},
       {:ash_phoenix, "2.0.0-rc.4"},
       {:ash_postgres, "2.0.0-rc.7"},
+      {:picosat_elixir, "~> 0.2.3"},
       {:phoenix, "~> 1.7.12"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},

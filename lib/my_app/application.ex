@@ -14,6 +14,7 @@ defmodule MyApp.Application do
       {Phoenix.PubSub, name: MyApp.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: MyApp.Finch},
+      {AshAuthentication.Supervisor, otp_app: :my_app},
       # Start a worker by calling: MyApp.Worker.start_link(arg)
       # {MyApp.Worker, arg},
       # Start to serve requests, typically the last entry

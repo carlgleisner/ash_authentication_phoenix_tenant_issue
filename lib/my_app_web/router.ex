@@ -1,5 +1,6 @@
 defmodule MyAppWeb.Router do
   use MyAppWeb, :router
+  use AshAuthentication.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -8,14 +9,22 @@ defmodule MyAppWeb.Router do
     plug :put_root_layout, html: {MyAppWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug MyAppWeb.SetTenant
+    plug :load_from_session
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :load_from_bearer
   end
 
   scope "/", MyAppWeb do
     pipe_through :browser
+
+    sign_in_route(register_path: "/register", reset_path: "/reset")
+    sign_out_route AuthController
+    auth_routes_for MyApp.Accounts.User, to: AuthController
+    reset_route []
 
     get "/", PageController, :home
   end

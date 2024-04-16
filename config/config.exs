@@ -62,7 +62,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :my_app,
-  ash_domains: []
+  ash_domains: [MyApp.Accounts]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
